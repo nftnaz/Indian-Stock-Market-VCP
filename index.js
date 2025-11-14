@@ -563,7 +563,7 @@ const App = () => {
             )
         ),
         e('footer', { className: "text-center p-4 text-muted text-sm mt-8" },
-            e('p', null, "Disclaimer: This is an educational tool for analyzing market patterns. Not financial advice.")
+            e('p', null, "© 2024 VCP Scanner | Disclaimer: Educational tool only. Not financial advice.")
         )
     );
 };
