@@ -2,8 +2,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { GoogleGenAI } from '@google/genai';
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { marked } from 'marked';
+
+import { generateVcpChartData } from './services/chartDataService.js';
+import { VcpChart } from './components/VcpChart.js';
+
 
 const { useState, useMemo, useCallback, Fragment } = React;
 const e = React.createElement;
@@ -331,7 +334,7 @@ async function getVcpAnalysis(stock) {
         You are a seasoned technical analyst specializing in the Volatility Contraction Pattern (VCP), a concept popularized by Mark Minervini.
         A user has identified ${stock.name} (${stock.symbol}) as a potential VCP candidate.
         
-        Based on a simulated chart showing a classic VCP setup for this stock, provide a brief, professional analysis. Your analysis should:
+        Based on a simulated daily chart showing a classic VCP setup for this stock, provide a brief, professional analysis. Your analysis should:
         1. Briefly explain that VCP is characterized by tightening price volatility over several weeks.
         2. Mention the "tell-tale" sign of volume drying up as the pattern consolidates.
         3. Speculate on what a potential breakout might look like (e.g., a sharp increase in price on high volume).
@@ -452,15 +455,14 @@ const StockChartModal = ({ stock, onClose }) => {
         }
     }, [stock]);
 
-    // Dummy data for chart simulation
-    const chartData = useMemo(() => [{ name: 'Wk 1', price: 100, vol: 30 }, { name: 'Wk 2', price: 110, vol: 28 }, { name: 'Wk 3', price: 105, vol: 25 }, { name: 'Wk 4', price: 115, vol: 22 }, { name: 'Wk 5', price: 112, vol: 18 }, { name: 'Wk 6', price: 118, vol: 15 }, { name: 'Wk 7', price: 116, vol: 10 }, { name: 'Wk 8', price: 120, vol: 8 }, { name: 'Wk 9', price: 119, vol: 5 }, { name: 'Wk 10', price: 121, vol: 3 }], []);
+    const chartData = useMemo(() => generateVcpChartData(), []);
 
     return e('div', {
         className: "fixed inset-0 bg-base/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in",
         onClick: onClose, role: "dialog", 'aria-modal': "true", 'aria-labelledby': "stock-modal-title"
     },
         e('div', {
-            className: "bg-surface rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col border border-overlay",
+            className: "bg-surface rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col border border-overlay",
             onClick: e => e.stopPropagation()
         },
             e('header', { className: "p-4 flex items-center justify-between border-b border-overlay flex-shrink-0" },
@@ -472,19 +474,9 @@ const StockChartModal = ({ stock, onClose }) => {
             ),
             e('main', { className: "p-6 flex-grow overflow-y-auto space-y-6" },
                 e('section', null,
-                    e('h3', { className: "text-lg font-semibold text-subtle mb-4" }, "VCP Chart Simulation"),
-                    e('div', { className: "h-64 w-full" },
-                        e(ResponsiveContainer, {
-                            width: "100%",
-                            height: "100%",
-                            children: e(LineChart, { data: chartData, margin: { top: 5, right: 20, left: -10, bottom: 5 } },
-                                e(CartesianGrid, { strokeDasharray: "3 3", stroke: "#374151" }),
-                                e(XAxis, { dataKey: "name", stroke: "#9ca3af", tickLine: false, axisLine: false }),
-                                e(YAxis, { stroke: "#9ca3af", tickLine: false, axisLine: false }),
-                                e(Tooltip, { contentStyle: { backgroundColor: '#111827', borderColor: '#374151', color: '#f9fafb', borderRadius: '0.5rem' } }),
-                                e(Line, { type: "monotone", dataKey: "price", stroke: "#3b82f6", strokeWidth: 2, dot: false })
-                            )
-                        })
+                    e('h3', { className: "text-lg font-semibold text-subtle mb-4" }, "Simulated Daily VCP Chart"),
+                    e('div', { className: "h-96 w-full" },
+                        e(VcpChart, { data: chartData })
                     )
                 ),
                 e('section', { className: "" },
