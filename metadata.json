@@ -1,0 +1,5 @@
+{
+  "name": "Nazim's VCP Stock Scanner",
+  "description": "An AI-powered tool to scan for stocks exhibiting the Volatility Contraction Pattern (VCP). It simulates scanning NSE/BSE stocks, identifies potential VCP setups, and provides AI-generated analysis for each identified pattern.",
+  "requestFramePermissions": []
+}
