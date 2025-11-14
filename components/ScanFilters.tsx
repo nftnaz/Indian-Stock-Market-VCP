@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import type { ScanFilters as ScanFiltersType } from '../types';
+import type { ScanFilters as ScanFiltersType } from '../types.ts';
 
 interface ScanFiltersProps {
     onScan: (filters: ScanFiltersType) => void;

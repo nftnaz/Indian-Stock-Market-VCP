@@ -1,4 +1,5 @@
-import type { Stock } from '../types';
+
+import type { Stock } from '../types.ts';
 
 // A representative list of NSE/BSE stocks for the scanner to analyze.
 // In a real-world application, this would come from an API.

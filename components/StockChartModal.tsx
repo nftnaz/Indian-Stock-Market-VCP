@@ -1,8 +1,9 @@
+
 import React, { useState, useCallback } from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
-import { getVcpAnalysis } from '../services/geminiService';
-import type { Stock } from '../types';
-import { LoadingIcon, CloseIcon } from './icons';
+import { getVcpAnalysis } from '../services/geminiService.ts';
+import type { Stock } from '../types.ts';
+import { LoadingIcon, CloseIcon } from './icons.tsx';
 
 interface StockChartModalProps {
     stock: Stock;

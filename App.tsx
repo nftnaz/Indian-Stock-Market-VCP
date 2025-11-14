@@ -1,10 +1,11 @@
+
 import React, { useState, useCallback, useMemo } from 'react';
-import { Header } from './components/Header';
-import { getStocks } from './services/scannerService';
-import { getVcpCandidates } from './services/precomputedResultsService';
-import type { ScanFilters, Stock } from './types';
-import { ScanFilters as ScanFiltersComponent } from './components/ScanFilters';
-import { StockList } from './components/StockList';
+import { Header } from './components/Header.tsx';
+import { getStocks } from './services/scannerService.ts';
+import { getVcpCandidates } from './services/precomputedResultsService.ts';
+import type { ScanFilters, Stock } from './types.ts';
+import { ScanFilters as ScanFiltersComponent } from './components/ScanFilters.tsx';
+import { StockList } from './components/StockList.tsx';
 
 const App: React.FC = () => {
   const [scanResults, setScanResults] = useState<Stock[]>([]);

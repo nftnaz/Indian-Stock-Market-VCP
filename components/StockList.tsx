@@ -1,7 +1,8 @@
+
 import React, { useState } from 'react';
-import { StockListItem } from './StockListItem';
-import { StockChartModal } from './StockChartModal';
-import type { Stock } from '../types';
+import { StockListItem } from './StockListItem.tsx';
+import { StockChartModal } from './StockChartModal.tsx';
+import type { Stock } from '../types.ts';
 
 interface StockListProps {
     stocks: Stock[];
