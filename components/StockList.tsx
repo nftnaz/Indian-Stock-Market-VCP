@@ -1,5 +1,5 @@
 import React from 'react';
-import { StockListItem } from './StockListItem';
+import { StockListItem } from './StockListItem.js';
 import type { Stock } from '../types';
 
 interface StockListProps {

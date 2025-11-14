@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ChartBarIcon } from './icons';
+import { ChartBarIcon } from './icons.js';
 
 export const Header: React.FC = () => {
   return (
