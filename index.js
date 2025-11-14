@@ -1,3 +1,4 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { GoogleGenAI } from '@google/genai';
@@ -421,7 +422,7 @@ const StockListItem = ({ stock, onSelect }) => {
         e('div', { className: "flex items-center gap-4" },
             e('div', { className: "flex-shrink-0 w-12 h-12 bg-surface rounded-full flex items-center justify-center font-bold text-primary" }, stock.symbol.charAt(0)),
             e('div', null,
-                e('p', { className: "font-bold text-text text-lg" }, stock.symbol),
+                e('p', { className: "font-bold text-text text-lg" }, stock.symbol.split('.')[0]),
                 e('p', { className: "text-sm text-subtle" }, stock.name)
             )
         ),
@@ -464,7 +465,7 @@ const StockChartModal = ({ stock, onClose }) => {
         },
             e('header', { className: "p-4 flex items-center justify-between border-b border-overlay flex-shrink-0" },
                 e('div', null,
-                    e('h2', { id: "stock-modal-title", className: "text-xl font-bold text-text bg-gradient-to-r from-primary-focus to-primary bg-clip-text text-transparent" }, stock.symbol),
+                    e('h2', { id: "stock-modal-title", className: "text-xl font-bold text-text bg-gradient-to-r from-primary-focus to-primary bg-clip-text text-transparent" }, stock.symbol.split('.')[0]),
                     e('p', { className: "text-sm text-subtle" }, stock.name)
                 ),
                 e('button', { onClick: onClose, className: "p-2 rounded-full text-subtle hover:bg-overlay hover:text-text transition-colors", 'aria-label': "Close modal" }, e(CloseIcon))
