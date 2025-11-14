@@ -364,14 +364,8 @@ const Header = () => {
         e('div', { className: "container mx-auto px-4 md:px-6 py-4 flex items-center justify-between" },
             e('div', { className: "flex items-center gap-3" },
                 e(ChartBarIcon),
-                e('h1', { className: "text-xl font-bold text-text tracking-wider" }, "AI VCP Stock Scanner")
-            ),
-            e('a', {
-                href: "https://github.com/google/generative-ai-docs/tree/main/app-development/web",
-                target: "_blank",
-                rel: "noopener noreferrer",
-                className: "px-4 py-2 text-sm font-medium text-subtle hover:text-text transition-colors duration-200 rounded-md bg-overlay hover:bg-opacity-75"
-            }, "View Source")
+                e('h1', { className: "text-xl font-bold text-text tracking-wider" }, "Nazim's Stock Screener")
+            )
         )
     );
 };

@@ -1,4 +1,27 @@
 
+const getLastNTradingDays = (n) => {
+    const dates = [];
+    let currentDate = new Date();
+
+    // Start from the last weekday to ensure consistency
+    const dayOfWeek = currentDate.getDay();
+    if (dayOfWeek === 6) { // Saturday
+        currentDate.setDate(currentDate.getDate() - 1);
+    } else if (dayOfWeek === 0) { // Sunday
+        currentDate.setDate(currentDate.getDate() - 2);
+    }
+
+    while (dates.length < n) {
+        const currentDayOfWeek = currentDate.getDay();
+        if (currentDayOfWeek !== 0 && currentDayOfWeek !== 6) {
+            dates.push(new Date(currentDate));
+        }
+        currentDate.setDate(currentDate.getDate() - 1);
+    }
+    return dates.reverse();
+};
+
+
 export const generateVcpChartData = () => {
     const data = [];
     let price = 100;
@@ -97,5 +120,10 @@ export const generateVcpChartData = () => {
     const volume = baseVolume * 4; // Massive volume spike
     data.push(createDay(open, high, low, close, volume));
 
-    return data.map((d, i) => ({ ...d, name: `Day ${i + 1}` }));
+    const tradingDates = getLastNTradingDays(data.length);
+
+    return data.map((d, i) => ({ 
+        ...d, 
+        name: tradingDates[i].toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+    }));
 };
